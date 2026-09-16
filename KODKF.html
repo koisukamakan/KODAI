@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Digital Kelas 11 Koding & AI - SMAN 45 Jakarta</title>
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Fredoka for Cute Aesthetic -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Reset total untuk tampilan Blogger Full Page */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f0f9ff; /* Soft sky blue */
+        }
+
+        .font-heading {
+            font-family: 'Fredoka', cursive, sans-serif;
+        }
+
+        /* Blogger Overlay FullScreen Container */
+        #app-root {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 999999;
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 50%, #bae6fd 100%);
+            overflow-y: auto;
+        }
+
+        /* Cute ocean wave background animation */
+        .ocean-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border: 2px solid #e0f2fe;
+            box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.1), 0 8px 10px -6px rgba(14, 165, 233, 0.1);
+        }
+
+        .ocean-btn-primary {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            color: white;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 14px 0 rgba(2, 132, 199, 0.39);
+        }
+        .ocean-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px 0 rgba(2, 132, 199, 0.5);
+            background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+        }
+
+        .ocean-badge-cyan {
+            background-color: #cff4fc;
+            color: #055160;
+            border: 1px solid #9eeaf9;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e0f2fe;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #38bdf8;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0284c7;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tersembunyi: Thumbnail postingan khusus untuk indeks Blogger -->
+    <div style="display:none;" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600&auto=format&fit=crop" alt="Thumbnail Portofolio SMAN 45 Jakarta">
+    </div>
+
+    <div id-="app-root" id="app-root" class="flex flex-col min-h-screen">
+        
+        <!-- Navbar Top -->
+        <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b-2 border-sky-100 px-4 lg:px-8 py-3 shadow-sm">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                
+                <!-- Logo & Brand -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('galeri')">
+                    <div class="w-11 h-11 bg-gradient-to-tr from-sky-500 to-cyan-400 rounded-2xl flex items-center justify-center text-white text-xl font-bold shadow-md transform hover:rotate-6 transition-transform">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center space-x-2">
+                            <h1 class="text-xl font-bold font-heading text-sky-900 tracking-wide">SMAN 45 JAKARTA</h1>
+                            <span class="bg-sky-100 text-sky-700 text-xs font-bold px-2.5 py-0.5 rounded-full border border-sky-200">11 Koding & AI 🤖</span>
+                        </div>
+                        <p class="text-xs text-sky-600 font-medium">Showcase Portofolio Digital Peserta Didik</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Tabs (Desktop) -->
+                <nav class="hidden md:flex items-center space-x-2 bg-sky-50/80 p-1.5 rounded-2xl border border-sky-100">
+                    <button id="nav-galeri" onclick="switchTab('galeri')" class="px-4 py-2 rounded-xl font-semibold text-sm transition-all text-sky-800 bg-white shadow-sm">
+                        <i class="fa-solid fa-compass mr-1.5 text-sky-500"></i> Galeri Karya
+                    </button>
+                    <button id="nav-direktori" onclick="switchTab('direktori')" class="px-4 py-2 rounded-xl font-semibold text-sm transition-all text-sky-600 hover:text-sky-900 hover:bg-white/50">
+                        <i class="fa-solid fa-users mr-1.5 text-cyan-500"></i> Direktori Siswa
+                    </button>
+                    <button id="nav-siswa" onclick="switchTab('siswa')" class="px-4 py-2 rounded-xl font-semibold text-sm transition-all text-sky-600 hover:text-sky-900 hover:bg-white/50">
+                        <i class="fa-solid fa-cloud-arrow-up mr-1.5 text-blue-500"></i> Tugas Saya
+                    </button>
+                    <button id="nav-guru" onclick="switchTab('guru')" class="px-4 py-2 rounded-xl font-semibold text-sm transition-all text-sky-600 hover:text-sky-900 hover:bg-white/50">
+                        <i class="fa-solid fa-list-check mr-1.5 text-teal-500"></i> Dashboard Guru
+                    </button>
+                </nav>
+
+                <!-- User Auth Area -->
+                <div class="flex items-center space-x-3">
+                    <div id="user-profile-badge" class="hidden items-center space-x-2 bg-sky-100 px-3 py-1.5 rounded-2xl border border-sky-200">
+                        <div class="w-7 h-7 bg-sky-500 text-white rounded-full flex items-center justify-center font-bold text-xs" id="user-avatar-initial">
+                            U
+                        </div>
+                        <div class="text-left text-xs">
+                            <span id="user-display-name" class="block font-bold text-sky-900 leading-none">Nama User</span>
+                            <span id="user-display-role" class="block text-[10px] text-sky-600 font-semibold uppercase">Role</span>
+                        </div>
+                    </div>
+
+                    <button id="btn-login-trigger" onclick="openLoginModal()" class="ocean-btn-primary px-4 py-2 rounded-xl font-bold text-sm flex items-center space-x-2">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <span>Masuk</span>
+                    </button>
+
+                    <button id="btn-logout" onclick="logout()" class="hidden bg-rose-100 hover:bg-rose-200 text-rose-700 px-3 py-2 rounded-xl font-bold text-sm transition-colors">
+                        <i class="fa-solid fa-power-off"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Bar -->
+            <div class="flex md:hidden items-center justify-around mt-3 pt-2 border-t border-sky-100 text-xs font-bold">
+                <button onclick="switchTab('galeri')" class="text-sky-800 flex flex-col items-center">
+                    <i class="fa-solid fa-compass text-base mb-0.5"></i> Galeri
+                </button>
+                <button onclick="switchTab('direktori')" class="text-sky-600 flex flex-col items-center">
+                    <i class="fa-solid fa-users text-base mb-0.5"></i> Siswa
+                </button>
+                <button onclick="switchTab('siswa')" class="text-sky-600 flex flex-col items-center">
+                    <i class="fa-solid fa-cloud-arrow-up text-base mb-0.5"></i> Tugas
+                </button>
+                <button onclick="switchTab('guru')" class="text-sky-600 flex flex-col items-center">
+                    <i class="fa-solid fa-list-check text-base mb-0.5"></i> Guru
+                </button>
+            </div>
+        </header>
+
+        <!-- Toast Container -->
+        <div id="toast-container" class="fixed top-20 right-5 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-8">
+
+            <!-- ================= SECTION 1: GALERI KARYA (PUBLIC SHOWCASE) ================= -->
+            <section id="tab-galeri" class="space-y-6">
+                <!-- Hero Banner Cute -->
+                <div class="ocean-card rounded-3xl p-6 md:p-8 relative overflow-hidden bg-gradient-to-r from-sky-400 via-sky-500 to-cyan-500 text-white shadow-xl">
+                    <div class="relative z-10 max-w-2xl">
+                        <span class="inline-block bg-white/20 backdrop-blur-md text-white font-bold text-xs px-3 py-1 rounded-full mb-3 border border-white/30">
+                            🌊 Welcoming Innovators!
+                        </span>
+                        <h2 class="text-2xl md:text-4xl font-extrabold font-heading mb-2">Eksplorasi Karya Koding & AI SMAN 45 Jakarta</h2>
+                        <p class="text-sky-100 text-sm md:text-base mb-6 leading-relaxed">
+                            Kumpulan pameran proyek pemrograman, model Machine Learning, aplikasi web, dan resume riset AI dari siswa-siswi Kelas 11 Koding & AI.
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="#galeri-grid" class="bg-white text-sky-800 hover:bg-sky-50 font-bold px-5 py-2.5 rounded-2xl text-sm transition-all shadow-md">
+                                <i class="fa-solid fa-rocket text-sky-500 mr-1.5"></i> Jelajahi Karya
+                            </a>
+                            <button onclick="switchTab('siswa')" class="bg-sky-700/50 hover:bg-sky-800/60 backdrop-blur-md text-white border border-white/30 font-bold px-5 py-2.5 rounded-2xl text-sm transition-all">
+                                <i class="fa-solid fa-plus mr-1.5"></i> Unggah Tugas Saya
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Cute Decorative Icons floating -->
+                    <div class="absolute -right-6 -bottom-8 opacity-20 text-white text-[160px] pointer-events-none font-bold">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                </div>
+
+                <!-- Filter & Search Controls -->
+                <div class="ocean-card rounded-2xl p-4 flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <!-- Filter Buttons -->
+                    <div class="flex items-center space-x-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0">
+                        <button onclick="filterGallery('semua')" class="btn-filter active px-4 py-2 rounded-xl text-xs font-bold bg-sky-500 text-white shadow-sm border border-sky-500 whitespace-nowrap">
+                            ✨ Semua Karya
+                        </button>
+                        <button onclick="filterGallery('Teori')" class="btn-filter px-4 py-2 rounded-xl text-xs font-bold bg-white text-sky-700 hover:bg-sky-50 border border-sky-200 whitespace-nowrap">
+                            📚 Tugas Teori & Paper
+                        </button>
+                        <button onclick="filterGallery('Praktik')" class="btn-filter px-4 py-2 rounded-xl text-xs font-bold bg-white text-sky-700 hover:bg-sky-50 border border-sky-200 whitespace-nowrap">
+                            💻 Tugas Praktik (AI / Web)
+                        </button>
+                    </div>
+
+                    <!-- Search Input -->
+                    <div class="relative w-full md:w-72">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-sky-400 text-sm"></i>
+                        <input type="text" id="search-galeri" onkeyup="searchGallery()" placeholder="Cari karya atau nama siswa..." class="w-full pl-10 pr-4 py-2 bg-sky-50/50 border border-sky-200 rounded-xl text-sm text-sky-900 focus:outline-none focus:ring-2 focus:ring-sky-400">
+                    </div>
+                </div>
+
+                <!-- Grid Showcase Karya -->
+                <div id="galeri-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Cards will be populated dynamically -->
+                </div>
+            </section>
+
+            <!-- ================= SECTION 2: DIREKTORI SISWA ================= -->
+            <section id="tab-direktori" class="hidden space-y-6">
+                <div class="ocean-card rounded-3xl p-6 bg-white">
+                    <div class="flex items-center space-x-3 mb-2">
+                        <div class="p-3 bg-cyan-100 text-cyan-600 rounded-2xl">
+                            <i class="fa-solid fa-id-card text-xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold font-heading text-sky-900">Direktori Siswa Kelas 11 Koding & AI</h2>
+                            <p class="text-xs text-sky-600">Daftar talenta koding dan AI SMAN 45 Jakarta beserta ringkasan keahlian mereka</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid Siswa -->
+                <div id="siswa-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Data siswa dimuat dinamis -->
+                </div>
+            </section>
+
+            <!-- ================= SECTION 3: KELOLA TUGAS (PORTAL SISWA) ================= -->
+            <section id="tab-siswa" class="hidden space-y-6">
+                
+                <!-- Notice Jika belum login -->
+                <div id="siswa-guest-notice" class="ocean-card rounded-3xl p-8 text-center bg-white border-2 border-dashed border-sky-300">
+                    <div class="w-16 h-16 bg-sky-100 text-sky-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-heading text-sky-900 mb-2">Akses Terbatas untuk Siswa</h3>
+                    <p class="text-sky-600 text-sm max-w-md mx-auto mb-6">
+                        Silakan login menggunakan Akun Siswa (NISN) Anda untuk dapat mengunggah tugas teori/praktik dan melihat status verifikasi nilai dari guru.
+                    </p>
+                    <button onclick="openLoginModal('siswa')" class="ocean-btn-primary px-6 py-3 rounded-2xl font-bold text-sm inline-flex items-center space-x-2">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <span>Login Sebagai Siswa</span>
+                    </button>
+                </div>
+
+                <!-- Panel Kelola Tugas Siswa (Sudah Login) -->
+                <div id="siswa-authenticated-panel" class="hidden space-y-6">
+                    
+                    <!-- Form Upload Karya Baru -->
+                    <div class="ocean-card rounded-3xl p-6 md:p-8 bg-white">
+                        <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-sky-100">
+                            <div class="w-10 h-10 bg-sky-100 text-sky-600 rounded-2xl flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold font-heading text-sky-900">Form Pengumpulan Tugas & Karya</h3>
+                                <p class="text-xs text-sky-600">Kirimkan hasil pengerjaan tugas teori (GDocs/Drive) atau praktik (GitHub/Colab/Replit/Web)</p>
+                            </div>
+                        </div>
+
+                        <form id="form-upload-karya" onsubmit="handleUploadKarya(event)" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            
+                            <!-- Jenis Tugas -->
+                            <div class="col-span-1">
+                                <label class="block text-xs font-bold text-sky-900 mb-1.5">Jenis Tugas <span class="text-rose-500">*</span></label>
+                                <select id="input-jenis-tugas" required class="w-full bg-sky-50/50 border border-sky-200 rounded-xl px-3.5 py-2.5 text-sm text-sky-900 font-semibold focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                                    <option value="Praktik">💻 Tugas Praktik (Koding / AI / Web)</option>
+                                    <option value="Teori">📚 Tugas Teori (Artikel / Paper / Resume)</option>
+                                </select>
+                            </div>
+
+                            <!-- Kategori Topik -->
+                            <div class="col-span-1">
+                                <label class="block text-xs font-bold text-sky-900 mb-1.5">Kategori Topik <span class="text-rose-500">*</span></label>
+                                <select id="input-kategori-topik" required class="w-full bg-sky-50/50 border border-sky-200 rounded-xl px-3.5 py-2.5 text-sm text-sky-900 font-semibold focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                                    <option value="Machine Learning">🤖 Machine Learning & AI</option>
+                                    <option value="Python Script">🐍 Python Programming</option>
+                                    <option value="Web Dev">🌐 Web Development (HTML/CSS/JS)</option>
+                                    <option value="Paper AI">📝 Riset / Analisis Etika AI</option>
+                                    <option value="Algoritma">⚙️ Algoritma & Struktur Data</option>
+                                </select>
+                            </div>
+
+                            <!-- Judul Karya -->
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-xs font-bold text-sky-900 mb-1.5">Judul Tugas / Proyek <span class="text-rose-500">*</span></label>
+                                <input type="text" id="input-judul" required placeholder="Contoh: Klasifikasi Gambar Bunga Menggunakan CNN PyTorch" class="w-full bg-sky-50/50 border border-sky-200 rounded-xl px-3.5 py-2.5 text-sm text-sky-900 focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                            </div>
+
+                            <!-- Link Bukti Tugas -->
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-xs font-bold text-sky-900 mb-1.5">Link Hasil Tugas (GitHub / Google Colab / Drive PDF / Vercel) <span class="text-rose-500">*</span></label>
+                                <input type="url" id="input-link-tugas" required placeholder="https://github.com/username/project atau https://colab.research.google.com/..." class="w-full bg-sky-50/50 border border-sky-200 rounded-xl px-3.5 py-2.5 text-sm text-sky-900 focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                            </div>
+
+                            <!-- Tech Stack -->
+                            <div class="col-span-1">
+                                <label class="block text-xs font-bold text-sky-900 mb-1.5">Tech Stack / Alat yang Digunakan</label>
+                                <input type="text" id="input-tech-stack" placeholder="Contoh: Python, TensorFlow, Google Colab" class="w-full bg-sky-50/50 border border-sky-200 rounded-xl px-3.5 py-2.5 text-sm text-sky-900 focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                            </div>
+
+                            <!-- Link Thumbnail Gambar (Opsional) -->
+                            <div class="col-span-1">
+                                <label class="block text-xs font-bold text-sky-900 mb-1.5">Link Gambar Thumbnail (Opsional)</label>
+                                <input type="url" id="input-link-thumbnail" placeholder="https://i.ibb.co/..." class="w-full bg-sky-50/50 border border-sky-200 rounded-xl px-3.5 py-2.5 text-sm text-sky-900 focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                            </div>
+
+                            <!-- Deskripsi -->
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-xs font-bold text-sky-900 mb-1.5">Deskripsi Singkat Karya <span class="text-rose-500">*</span></label>
+                                <textarea id="input-deskripsi" rows="3" required placeholder="Jelaskan ringkas latar belakang, fitur utama, atau ringkasan tugas yang dibuat..." class="w-full bg-sky-50/50 border border-sky-200 rounded-xl px-3.5 py-2.5 text-sm text-sky-900 focus:ring-2 focus:ring-sky-400 focus:outline-none"></textarea>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="col-span-1 md:col-span-2 flex justify-end">
+                                <button type="submit" id="btn-submit-karya" class="ocean-btn-primary px-6 py-3 rounded-2xl font-bold text-sm flex items-center space-x-2">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    <span>Kirimkan Tugas</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Riwayat Tugas Siswa -->
+                    <div class="ocean-card rounded-3xl p-6 bg-white">
+                        <h3 class="text-lg font-bold font-heading text-sky-900 mb-4 flex items-center space-x-2">
+                            <i class="fa-solid fa-clock-rotate-left text-sky-500"></i>
+                            <span>Riwayat Pengumpulan Tugas Saya</span>
+                        </h3>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-sky-50/80 text-sky-900 text-xs font-extrabold uppercase border-b border-sky-100">
+                                        <th class="p-3.5 rounded-l-xl">Tugas & Kategori</th>
+                                        <th class="p-3.5">Tanggal</th>
+                                        <th class="p-3.5">Status Validasi</th>
+                                        <th class="p-3.5">Nilai</th>
+                                        <th class="p-3.5 rounded-r-xl">Catatan Guru</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabel-riwayat-siswa-body" class="text-sm divide-y divide-sky-100">
+                                    <!-- Dynamic rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SECTION 4: DASHBOARD GURU (VALIDASI & PENILAIAN) ================= -->
+            <section id="tab-guru" class="hidden space-y-6">
+                
+                <!-- Notice jika bukan Guru -->
+                <div id="guru-guest-notice" class="ocean-card rounded-3xl p-8 text-center bg-white border-2 border-dashed border-teal-300">
+                    <div class="w-16 h-16 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-heading text-sky-900 mb-2">Portal Khusus Validator / Guru Informatika</h3>
+                    <p class="text-sky-600 text-sm max-w-md mx-auto mb-6">
+                        Silakan login menggunakan Akun Guru untuk melakukan peninjauan tugas, memberikan skor, serta mencantumkan saran perbaikan.
+                    </p>
+                    <button onclick="openLoginModal('guru')" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-2xl font-bold text-sm inline-flex items-center space-x-2 shadow-md">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <span>Login Sebagai Guru</span>
+                    </button>
+                </div>
+
+                <!-- Panel Dashboard Guru (Sudah Login) -->
+                <div id="guru-authenticated-panel" class="hidden space-y-6">
+                    
+                    <!-- Stats Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="ocean-card rounded-2xl p-5 bg-white border-l-4 border-l-sky-500">
+                            <p class="text-xs font-bold text-sky-600 uppercase">Total Tugas Masuk</p>
+                            <h4 id="stat-total-tugas" class="text-3xl font-extrabold font-heading text-sky-900 mt-1">0</h4>
+                        </div>
+                        <div class="ocean-card rounded-2xl p-5 bg-white border-l-4 border-l-amber-500">
+                            <p class="text-xs font-bold text-amber-600 uppercase">Perlu Review (Pending)</p>
+                            <h4 id="stat-pending-tugas" class="text-3xl font-extrabold font-heading text-amber-700 mt-1">0</h4>
+                        </div>
+                        <div class="ocean-card rounded-2xl p-5 bg-white border-l-4 border-l-emerald-500">
+                            <p class="text-xs font-bold text-emerald-600 uppercase">Tervalidasi / Disetujui</p>
+                            <h4 id="stat-approved-tugas" class="text-3xl font-extrabold font-heading text-emerald-700 mt-1">0</h4>
+                        </div>
+                        <div class="ocean-card rounded-2xl p-5 bg-white border-l-4 border-l-rose-500">
+                            <p class="text-xs font-bold text-rose-600 uppercase">Minta Revisi</p>
+                            <h4 id="stat-revision-tugas" class="text-3xl font-extrabold font-heading text-rose-700 mt-1">0</h4>
+                        </div>
+                    </div>
+
+                    <!-- Tabel Manajemen Validasi -->
+                    <div class="ocean-card rounded-3xl p-6 bg-white">
+                        <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
+                            <h3 class="text-xl font-bold font-heading text-sky-900 flex items-center space-x-2">
+                                <i class="fa-solid fa-list-check text-teal-600"></i>
+                                <span>Daftar Pengajuan Portofolio Siswa</span>
+                            </h3>
+
+                            <!-- Filter Status Guru -->
+                            <div class="flex items-center space-x-2">
+                                <select id="filter-status-guru" onchange="renderGuruTable()" class="bg-sky-50 border border-sky-200 rounded-xl px-3 py-1.5 text-xs font-bold text-sky-900 focus:outline-none">
+                                    <option value="semua">Semua Status</option>
+                                    <option value="Pending">⏰ Perlu Review (Pending)</option>
+                                    <option value="Disetujui">✅ Disetujui</option>
+                                    <option value="Revisi">💡 Perlu Revisi</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-sky-50/80 text-sky-900 text-xs font-extrabold uppercase border-b border-sky-100">
+                                        <th class="p-3.5 rounded-l-xl">Siswa</th>
+                                        <th class="p-3.5">Judul Karya & Jenis</th>
+                                        <th class="p-3.5">Link Tugas</th>
+                                        <th class="p-3.5">Status</th>
+                                        <th class="p-3.5">Nilai</th>
+                                        <th class="p-3.5 rounded-r-xl text-center">Aksi Penilaian</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabel-guru-body" class="text-sm divide-y divide-sky-100">
+                                    <!-- Dynamic Rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- MODAL 1: LOGIN CUSTOM -->
+        <div id="modal-login" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+            <div class="ocean-card rounded-3xl max-w-md w-full bg-white p-6 md:p-8 relative shadow-2xl animate-fade-in">
+                <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-sky-400 hover:text-sky-700 text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <div class="text-center mb-6">
+                    <div class="w-14 h-14 bg-sky-100 text-sky-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl font-bold">
+                        <i class="fa-solid fa-user-lock"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading text-sky-900">Akses Masuk System</h3>
+                    <p class="text-xs text-sky-600 mt-1">Sistem Portofolio Digital SMAN 45 Jakarta</p>
+                </div>
+
+                <!-- Tabs Switching Login Type -->
+                <div class="flex bg-sky-50 p-1 rounded-2xl mb-5 border border-sky-100 text-xs font-bold">
+                    <button id="tab-login-siswa" onclick="setLoginRole('siswa')" class="flex-1 py-2 rounded-xl transition-all bg-white text-sky-900 shadow-sm">
+                        👨‍🎓 Siswa (NISN)
+                    </button>
+                    <button id="tab-login-guru" onclick="setLoginRole('guru')" class="flex-1 py-2 rounded-xl transition-all text-sky-600 hover:text-sky-900">
+                        👩‍🏫 Guru / Validator
+                    </button>
+                </div>
+
+                <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
+                    <div>
+                        <label id="lbl-username" class="block text-xs font-bold text-sky-900 mb-1">Username / NISN</label>
+                        <input type="text" id="login-username" required placeholder="Masukkan username atau NISN..." class="w-full bg-sky-50/50 border border-sky-200 rounded-xl px-3.5 py-2.5 text-sm text-sky-900 focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-sky-900 mb-1">Password</label>
+                        <input type="password" id="login-password" required placeholder="••••••••" class="w-full bg-sky-50/50 border border-sky-200 rounded-xl px-3.5 py-2.5 text-sm text-sky-900 focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                    </div>
+
+                    <button type="submit" id="btn-login-submit" class="w-full ocean-btn-primary py-3 rounded-2xl font-bold text-sm mt-2">
+                        Masuk Sekarang
+                    </button>
+                </form>
+
+                <!-- Demo Autofill Quick Buttons -->
+                <div class="mt-6 pt-4 border-t border-sky-100 text-center">
+                    <p class="text-[11px] font-bold text-sky-500 uppercase mb-2">Uji Coba Cepat Mode Demo:</p>
+                    <div class="flex gap-2 justify-center">
+                        <button onclick="autofillDemo('siswa')" class="px-3 py-1 bg-sky-100 hover:bg-sky-200 text-sky-800 rounded-lg text-xs font-semibold">
+                            🔑 Demo Siswa
+                        </button>
+                        <button onclick="autofillDemo('guru')" class="px-3 py-1 bg-teal-100 hover:bg-teal-200 text-teal-800 rounded-lg text-xs font-semibold">
+                            🔑 Demo Guru
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL 2: DETAIL KARYA SHOWCASE -->
+        <div id="modal-detail-karya" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+            <div class="ocean-card rounded-3xl max-w-2xl w-full bg-white p-6 md:p-8 relative shadow-2xl max-h-[90vh] overflow-y-auto">
+                <button onclick="closeDetailModal()" class="absolute top-4 right-4 text-sky-400 hover:text-sky-700 text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <div id="modal-detail-content">
+                    <!-- Content populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL 3: PENILAIAN GURU -->
+        <div id="modal-review-guru" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+            <div class="ocean-card rounded-3xl max-w-md w-full bg-white p-6 relative shadow-2xl">
+                <button onclick="closeReviewModal()" class="absolute top-4 right-4 text-sky-400 hover:text-sky-700 text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <h3 class="text-xl font-bold font-heading text-sky-900 mb-1">Penilaian & Validasi Guru</h3>
+                <p id="review-modal-subtitle" class="text-xs text-sky-600 mb-4">Validasi karya siswa</p>
+
+                <form onsubmit="handleReviewSubmit(event)" class="space-y-4">
+                    <input type="hidden" id="review-id-karya">
+
+                    <div>
+                        <label class="block text-xs font-bold text-sky-900 mb-1">Status Validasi</label>
+                        <select id="review-status" class="w-full bg-sky-50 border border-sky-200 rounded-xl px-3 py-2 text-sm text-sky-900 font-bold focus:outline-none">
+                            <option value="Disetujui">✅ Disetujui (Tampilkan di Galeri)</option>
+                            <option value="Revisi">💡 Minta Perbaikan / Revisi</option>
+                            <option value="Ditolak">❌ Ditolak / Tidak Sesuai</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-sky-900 mb-1">Nilai Angka (0 - 100)</label>
+                        <input type="number" id="review-nilai" min="0" max="100" required placeholder="Contoh: 90" class="w-full bg-sky-50 border border-sky-200 rounded-xl px-3 py-2 text-sm text-sky-900 focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-sky-900 mb-1">Catatan Perbaikan / Feedback Guru</label>
+                        <textarea id="review-catatan" rows="3" placeholder="Tuliskan apresiasi atau saran perbaikan koding..." class="w-full bg-sky-50 border border-sky-200 rounded-xl px-3 py-2 text-sm text-sky-900 focus:outline-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full ocean-btn-primary py-2.5 rounded-xl font-bold text-sm">
+                        Simpan Penilaian
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-auto bg-white border-t border-sky-100 py-6 px-4 text-center text-xs text-sky-600">
+            <p class="font-bold text-sky-900 mb-1">SMA Negeri 45 Jakarta — Kurikulum Koding & AI</p>
+            <p>Sistem Portofolio Digital Siswa Kelas 11 • Powered by Google Apps Script & Blogger</p>
+        </footer>
+    </div>
+
+    <script>
+        /* ==========================================================================
+           KONFIGURASI APLIKASI PORTOFOLIO SMAN 45
+           UBAH IS_PREVIEW KE false JIKA AKAN DI-DEPLOY KE BLOGGER TERHUBUNG GAS
+           ========================================================================== */
+        const IS_PREVIEW = true; // Default true untuk testing interaktif di Canvas
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbzd68lTfMt7YD2tN8mfb0NjT8vv_Oq09g3VguC8QRYkCfR9IS7Bj4qIjYYDkNFeScJBAg/exec";
+
+        // Global State Management
+        let currentUser = null; // { username, nama, role: 'siswa'|'guru', nisn, techStack }
+        let currentLoginRole = 'siswa';
+        let currentTab = 'galeri';
+        let activeFilter = 'semua';
+
+        // Dummy Master Data Siswa Kelas 11 Koding & AI
+        let stateSiswa = [
+            { nisn: '0061234567', username: 'siswa45', nama: 'Ahmad Rizky Pratama', kelas: '11 Koding & AI', techStack: 'Python, TensorFlow, HTML/CSS', bio: 'Berminat pada Computer Vision & Web Development', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop' },
+            { nisn: '0067654321', username: 'siti45', nama: 'Siti Nurhaliza', kelas: '11 Koding & AI', techStack: 'PyTorch, Pandas, Scikit-Learn', bio: 'Fokus pada Machine Learning & Analisis Data Kesehatan', avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=200&auto=format&fit=crop' },
+            { nisn: '0069988776', username: 'budi45', nama: 'Budi Santoso', kelas: '11 Koding & AI', techStack: 'JavaScript, React, Tailwind CSS', bio: 'Pengembang Front-End UI/UX Berbasis AI', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop' }
+        ];
+
+        // Dummy Master Data Portofolio
+        let statePortofolio = [
+            {
+                id: 'KRG-001',
+                timestamp: '2026-09-10 09:30',
+                nisn: '0061234567',
+                namaSiswa: 'Ahmad Rizky Pratama',
+                jenisTugas: 'Praktik',
+                kategori: 'Machine Learning',
+                judul: 'Klasifikasi Jenis Sampah Otomatis Menggunakan CNN',
+                deskripsi: 'Aplikasi pendeteksi jenis sampah berbasis Convolutional Neural Network untuk membantu pemilahan sampah lingkungan sekolah SMAN 45.',
+                linkTugas: 'https://github.com/siswa45/waste-classifier-cnn',
+                thumbnail: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=600&auto=format&fit=crop',
+                techStack: 'Python, TensorFlow, Keras',
+                status: 'Disetujui',
+                nilai: 95,
+                catatanGuru: 'Sangat bagus! Arsitektur CNN sudah cukup optimal dengan akurasi 92%.'
+            },
+            {
+                id: 'KRG-002',
+                timestamp: '2026-09-12 14:15',
+                nisn: '0067654321',
+                namaSiswa: 'Siti Nurhaliza',
+                jenisTugas: 'Teori',
+                kategori: 'Paper AI',
+                judul: 'Analisis Etika Implementasi Generative AI dalam Pendidikan',
+                deskripsi: 'Makalah komprehensif yang membahas dampak positif dan potensi risiko kepatuhan hak cipta penggunaan LLM di kalangan pelajar.',
+                linkTugas: 'https://docs.google.com/document/d/example',
+                thumbnail: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop',
+                techStack: 'Google Docs, Research Paper',
+                status: 'Disetujui',
+                nilai: 90,
+                catatanGuru: 'Analisis argumen sangat tajam dan melampirkan referensi ilmiah yang valid.'
+            },
+            {
+                id: 'KRG-003',
+                timestamp: '2026-09-15 11:00',
+                nisn: '0069988776',
+                namaSiswa: 'Budi Santoso',
+                jenisTugas: 'Praktik',
+                kategori: 'Web Dev',
+                judul: 'Dashboard Monitoring IoT Kelembaban Tanah Taman Sekolah',
+                deskripsi: 'Sistem antarmuka web interaktif berbasis Tailwind dan ChartJS untuk memantau kondisi kelembaban tanah secara real-time.',
+                linkTugas: 'https://github.com/budi45/iot-dashboard-sman45',
+                thumbnail: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=600&auto=format&fit=crop',
+                techStack: 'HTML, Tailwind CSS, Chart.js',
+                status: 'Pending',
+                nilai: null,
+                catatanGuru: ''
+            }
+        ];
+
+        /* ================= STREAMING_CHUNK:App initialization & lifecycle ================= */
+        window.addEventListener('DOMContentLoaded', () => {
+            renderGaleri();
+            renderDirektori();
+            updateUIState();
+        });
+
+        // Tab Navigation Controller
+        function switchTab(tabName) {
+            currentTab = tabName;
+            ['galeri', 'direktori', 'siswa', 'guru'].forEach(t => {
+                const sec = document.getElementById(`tab-${t}`);
+                const navBtn = document.getElementById(`nav-${t}`);
+                if (t === tabName) {
+                    sec.classList.remove('hidden');
+                    if (navBtn) {
+                        navBtn.className = 'px-4 py-2 rounded-xl font-semibold text-sm transition-all text-sky-800 bg-white shadow-sm';
+                    }
+                } else {
+                    sec.classList.add('hidden');
+                    if (navBtn) {
+                        navBtn.className = 'px-4 py-2 rounded-xl font-semibold text-sm transition-all text-sky-600 hover:text-sky-900 hover:bg-white/50';
+                    }
+                }
+            });
+
+            if (tabName === 'siswa' && currentUser?.role === 'siswa') {
+                renderSiswaHistory();
+            } else if (tabName === 'guru' && currentUser?.role === 'guru') {
+                renderGuruDashboard();
+            }
+        }
+
+        function renderGaleri() {
+            const grid = document.getElementById('galeri-grid');
+            grid.innerHTML = '';
+
+            // Filter approved items for public showcase
+            let list = statePortofolio.filter(p => p.status === 'Disetujui');
+
+            if (activeFilter !== 'semua') {
+                list = list.filter(p => p.jenisTugas === activeFilter);
+            }
+
+            const searchVal = document.getElementById('search-galeri')?.value.toLowerCase();
+            if (searchVal) {
+                list = list.filter(p => 
+                    p.judul.toLowerCase().includes(searchVal) || 
+                    p.namaSiswa.toLowerCase().includes(searchVal) ||
+                    p.kategori.toLowerCase().includes(searchVal)
+                );
+            }
+
+            if (list.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full ocean-card rounded-3xl p-8 text-center bg-white text-sky-700">
+                        <i class="fa-solid fa-folder-open text-4xl text-sky-300 mb-2"></i>
+                        <p class="font-bold">Belum ada karya tervalidasi di kategori ini.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            list.forEach(karya => {
+                const card = document.createElement('div');
+                card.className = 'ocean-card rounded-3xl overflow-hidden bg-white hover:shadow-xl transition-all flex flex-col group';
+                
+                const thumb = karya.thumbnail || 'https://placehold.co/600x400/0284c7/ffffff?text=Portofolio+AI';
+                const badgeColor = karya.jenisTugas === 'Praktik' ? 'bg-cyan-100 text-cyan-800' : 'bg-amber-100 text-amber-800';
+
+                card.innerHTML = `
+                    <div class="relative h-48 overflow-hidden bg-sky-100">
+                        <img src="${thumb}" alt="${karya.judul}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/600x400/0284c7/ffffff?text=Portofolio+AI'">
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-extrabold ${badgeColor} shadow-sm">
+                            ${karya.jenisTugas === 'Praktik' ? '💻 Praktik' : '📚 Teori'}
+                        </span>
+                        <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-xs font-bold bg-white/90 text-sky-900 shadow-sm">
+                            ⭐ Skor: ${karya.nilai}
+                        </span>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col">
+                        <span class="text-[11px] font-bold text-sky-500 uppercase tracking-wider mb-1">${karya.kategori}</span>
+                        <h4 class="font-bold text-base text-sky-900 mb-2 line-clamp-2 leading-snug">${karya.judul}</h4>
+                        <p class="text-xs text-sky-600 line-clamp-2 mb-4">${karya.deskripsi}</p>
+                        
+                        <div class="mt-auto pt-3 border-t border-sky-100 flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-6 h-6 rounded-full bg-sky-200 text-sky-800 text-[10px] font-bold flex items-center justify-center">
+                                    ${karya.namaSiswa.charAt(0)}
+                                </div>
+                                <span class="text-xs font-semibold text-sky-800 truncate max-w-[130px]">${karya.namaSiswa}</span>
+                            </div>
+                            <button onclick="openDetailModal('${karya.id}')" class="text-xs font-bold text-sky-600 hover:text-sky-900 flex items-center space-x-1">
+                                <span>Detail</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterGallery(type) {
+            activeFilter = type;
+            document.querySelectorAll('.btn-filter').forEach(btn => {
+                btn.className = 'btn-filter px-4 py-2 rounded-xl text-xs font-bold bg-white text-sky-700 hover:bg-sky-50 border border-sky-200 whitespace-nowrap';
+            });
+            event.target.className = 'btn-filter active px-4 py-2 rounded-xl text-xs font-bold bg-sky-500 text-white shadow-sm border border-sky-500 whitespace-nowrap';
+            renderGaleri();
+        }
+
+        function searchGallery() {
+            renderGaleri();
+        }
+
+        function renderDirektori() {
+            const grid = document.getElementById('siswa-grid');
+            grid.innerHTML = '';
+
+            stateSiswa.forEach(siswa => {
+                const validatedCount = statePortofolio.filter(p => p.nisn === siswa.nisn && p.status === 'Disetujui').length;
+                
+                const card = document.createElement('div');
+                card.className = 'ocean-card rounded-3xl p-5 bg-white flex flex-col items-center text-center';
+                card.innerHTML = `
+                    <div class="w-20 h-20 rounded-2xl overflow-hidden mb-3 border-2 border-sky-300 shadow-md">
+                        <img src="${siswa.avatar}" alt="${siswa.nama}" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-base text-sky-900">${siswa.nama}</h4>
+                    <p class="text-xs text-sky-500 font-semibold mb-2">NISN: ${siswa.nisn}</p>
+                    <p class="text-xs text-sky-700 mb-4 px-2 line-clamp-2">${siswa.bio}</p>
+                    
+                    <div class="w-full bg-sky-50 rounded-xl p-2.5 mb-3 border border-sky-100">
+                        <span class="text-[10px] font-bold text-sky-500 uppercase block mb-1">Tech Stack:</span>
+                        <p class="text-xs font-semibold text-sky-800">${siswa.techStack}</p>
+                    </div>
+
+                    <div class="mt-auto w-full pt-2 border-t border-sky-100 flex justify-between items-center text-xs font-bold text-sky-700">
+                        <span>Karya Tervalidasi:</span>
+                        <span class="px-2 py-0.5 bg-sky-200 text-sky-900 rounded-lg">${validatedCount} Project</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function setLoginRole(role) {
+            currentLoginRole = role;
+            const tabSiswa = document.getElementById('tab-login-siswa');
+            const tabGuru = document.getElementById('tab-login-guru');
+            const lblUser = document.getElementById('lbl-username');
+
+            if (role === 'siswa') {
+                tabSiswa.className = 'flex-1 py-2 rounded-xl transition-all bg-white text-sky-900 shadow-sm';
+                tabGuru.className = 'flex-1 py-2 rounded-xl transition-all text-sky-600 hover:text-sky-900';
+                lblUser.innerText = 'Username / NISN Siswa';
+            } else {
+                tabGuru.className = 'flex-1 py-2 rounded-xl transition-all bg-white text-sky-900 shadow-sm';
+                tabSiswa.className = 'flex-1 py-2 rounded-xl transition-all text-sky-600 hover:text-sky-900';
+                lblUser.innerText = 'Username Guru';
+            }
+        }
+
+        function openLoginModal(defaultRole = 'siswa') {
+            setLoginRole(defaultRole);
+            document.getElementById('modal-login').classList.remove('hidden');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('modal-login').classList.add('hidden');
+        }
+
+        function autofillDemo(role) {
+            if (role === 'siswa') {
+                setLoginRole('siswa');
+                document.getElementById('login-username').value = 'siswa45';
+                document.getElementById('login-password').value = '45hebat';
+            } else {
+                setLoginRole('guru');
+                document.getElementById('login-username').value = 'guru45';
+                document.getElementById('login-password').value = '45hebat';
+            }
+        }
+
+        async function handleLoginSubmit(e) {
+            e.preventDefault();
+            const username = document.getElementById('login-username').value.trim();
+            const password = document.getElementById('login-password').value.trim();
+
+            showToast('Memproses login...', 'info');
+
+            if (IS_PREVIEW) {
+                // Testing offline mode
+                setTimeout(() => {
+                    if (currentLoginRole === 'guru' && username === 'guru45' && password === '45hebat') {
+                        currentUser = {
+                            username: 'guru45',
+                            nama: 'Ibu Nurtanti, M.Pd.',
+                            role: 'guru'
+                        };
+                        showToast('Berhasil login sebagai Guru!', 'success');
+                        closeLoginModal();
+                        updateUIState();
+                        switchTab('guru');
+                    } else if (currentLoginRole === 'siswa' && (username === 'siswa45' || username === '0061234567') && password === '45hebat') {
+                        const mSiswa = stateSiswa[0];
+                        currentUser = {
+                            username: mSiswa.username,
+                            nisn: mSiswa.nisn,
+                            nama: mSiswa.nama,
+                            role: 'siswa'
+                        };
+                        showToast(`Selamat datang, ${currentUser.nama}!`, 'success');
+                        closeLoginModal();
+                        updateUIState();
+                        switchTab('siswa');
+                    } else {
+                        showToast('Username atau password salah! (Cek kredensial demo)', 'error');
+                    }
+                }, 500);
+            } else {
+                // Production fetch to GAS
+                try {
+                    const res = await fetch(`${GAS_URL}?action=login&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}&role=${currentLoginRole}`);
+                    const json = await res.json();
+                    if (json.status === 'success') {
+                        currentUser = json.user;
+                        showToast(`Selamat datang, ${currentUser.nama}!`, 'success');
+                        closeLoginModal();
+                        updateUIState();
+                        switchTab(currentUser.role === 'guru' ? 'guru' : 'siswa');
+                    } else {
+                        showToast(json.message || 'Login gagal!', 'error');
+                    }
+                } catch (err) {
+                    showToast('Gagal terhubung ke backend GAS', 'error');
+                }
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            updateUIState();
+            switchTab('galeri');
+            showToast('Anda telah keluar dari sistem.', 'info');
+        }
+
+        function updateUIState() {
+            const profileBadge = document.getElementById('user-profile-badge');
+            const btnLogin = document.getElementById('btn-login-trigger');
+            const btnLogout = document.getElementById('btn-logout');
+
+            if (currentUser) {
+                btnLogin.classList.add('hidden');
+                btnLogout.classList.remove('hidden');
+                profileBadge.classList.remove('hidden');
+                profileBadge.classList.add('flex');
+
+                document.getElementById('user-display-name').innerText = currentUser.nama;
+                document.getElementById('user-display-role').innerText = currentUser.role;
+                document.getElementById('user-avatar-initial').innerText = currentUser.nama.charAt(0);
+
+                // Section views update
+                if (currentUser.role === 'siswa') {
+                    document.getElementById('siswa-guest-notice').classList.add('hidden');
+                    document.getElementById('siswa-authenticated-panel').classList.remove('hidden');
+                } else if (currentUser.role === 'guru') {
+                    document.getElementById('guru-guest-notice').classList.add('hidden');
+                    document.getElementById('guru-authenticated-panel').classList.remove('hidden');
+                }
+            } else {
+                btnLogin.classList.remove('hidden');
+                btnLogout.classList.add('hidden');
+                profileBadge.classList.add('hidden');
+
+                document.getElementById('siswa-guest-notice').classList.remove('hidden');
+                document.getElementById('siswa-authenticated-panel').classList.add('hidden');
+                document.getElementById('guru-guest-notice').classList.remove('hidden');
+                document.getElementById('guru-authenticated-panel').classList.add('hidden');
+            }
+        }
+
+        function handleUploadKarya(e) {
+            e.preventDefault();
+            if (!currentUser || currentUser.role !== 'siswa') {
+                showToast('Akses ditolak! Silakan login sebagai siswa.', 'error');
+                return;
+            }
+
+            const newKarya = {
+                id: 'KRG-' + String(statePortofolio.length + 1).padStart(3, '0'),
+                timestamp: new Date().toISOString().slice(0, 16).replace('T', ' '),
+                nisn: currentUser.nisn,
+                namaSiswa: currentUser.nama,
+                jenisTugas: document.getElementById('input-jenis-tugas').value,
+                kategori: document.getElementById('input-kategori-topik').value,
+                judul: document.getElementById('input-judul').value,
+                deskripsi: document.getElementById('input-deskripsi').value,
+                linkTugas: document.getElementById('input-link-tugas').value,
+                thumbnail: document.getElementById('input-link-thumbnail').value,
+                techStack: document.getElementById('input-tech-stack').value || 'Python',
+                status: 'Pending',
+                nilai: null,
+                catatanGuru: ''
+            };
+
+            showToast('Mengirimkan tugas...', 'info');
+
+            if (IS_PREVIEW) {
+                setTimeout(() => {
+                    statePortofolio.unshift(newKarya);
+                    showToast('Tugas berhasil dikirim! Menunggu validasi guru.', 'success');
+                    document.getElementById('form-upload-karya').reset();
+                    renderSiswaHistory();
+                }, 400);
+            } else {
+                // GAS POST Call
+                fetch(GAS_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'submitKarya', karya: newKarya })
+                })
+                .then(r => r.json())
+                .then(res => {
+                    if (res.status === 'success') {
+                        showToast('Tugas berhasil terkirim ke Spreadsheet!', 'success');
+                        document.getElementById('form-upload-karya').reset();
+                        renderSiswaHistory();
+                    }
+                })
+                .catch(() => showToast('Gagal mengirim ke GAS', 'error'));
+            }
+        }
+
+        function renderSiswaHistory() {
+            const tbody = document.getElementById('tabel-riwayat-siswa-body');
+            tbody.innerHTML = '';
+
+            const list = statePortofolio.filter(p => p.nisn === currentUser.nisn);
+
+            if (list.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-sky-500">Belum ada tugas yang dikumpulkan.</td></tr>`;
+                return;
+            }
+
+            list.forEach(item => {
+                let statusBadge = '';
+                if (item.status === 'Disetujui') {
+                    statusBadge = `<span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-bold">✅ Disetujui</span>`;
+                } else if (item.status === 'Revisi') {
+                    statusBadge = `<span class="px-2.5 py-1 bg-rose-100 text-rose-800 rounded-full text-xs font-bold">💡 Perlu Revisi</span>`;
+                } else {
+                    statusBadge = `<span class="px-2.5 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-bold">⏰ Pending</span>`;
+                }
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="p-3.5 font-bold text-sky-900">
+                        <div>${item.judul}</div>
+                        <span class="text-[10px] text-sky-500 uppercase font-semibold">${item.kategori} (${item.jenisTugas})</span>
+                    </td>
+                    <td class="p-3.5 text-xs text-sky-600">${item.timestamp}</td>
+                    <td class="p-3.5">${statusBadge}</td>
+                    <td class="p-3.5 font-bold text-sky-900">${item.nilai !== null ? item.nilai : '-'}</td>
+                    <td class="p-3.5 text-xs text-sky-700 max-w-xs">${item.catatanGuru || '<i>Belum ada catatan</i>'}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderGuruDashboard() {
+            // Stats
+            document.getElementById('stat-total-tugas').innerText = statePortofolio.length;
+            document.getElementById('stat-pending-tugas').innerText = statePortofolio.filter(p => p.status === 'Pending').length;
+            document.getElementById('stat-approved-tugas').innerText = statePortofolio.filter(p => p.status === 'Disetujui').length;
+            document.getElementById('stat-revision-tugas').innerText = statePortofolio.filter(p => p.status === 'Revisi').length;
+
+            renderGuruTable();
+        }
+
+        function renderGuruTable() {
+            const tbody = document.getElementById('tabel-guru-body');
+            tbody.innerHTML = '';
+
+            const statusFilter = document.getElementById('filter-status-guru').value;
+            let list = statePortofolio;
+
+            if (statusFilter !== 'semua') {
+                list = list.filter(p => p.status === statusFilter);
+            }
+
+            if (list.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-sky-500">Tidak ada karya ditemukan.</td></tr>`;
+                return;
+            }
+
+            list.forEach(item => {
+                let badge = '';
+                if (item.status === 'Disetujui') badge = '<span class="text-xs font-bold text-emerald-600">Disetujui</span>';
+                else if (item.status === 'Revisi') badge = '<span class="text-xs font-bold text-rose-600">Revisi</span>';
+                else badge = '<span class="text-xs font-bold text-amber-600">Pending</span>';
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="p-3.5 font-bold text-sky-900 text-xs">
+                        <div>${item.namaSiswa}</div>
+                        <span class="text-[10px] text-sky-500">NISN: ${item.nisn}</span>
+                    </td>
+                    <td class="p-3.5 text-xs max-w-xs">
+                        <div class="font-bold text-sky-900 truncate">${item.judul}</div>
+                        <span class="text-[10px] font-semibold text-sky-500">${item.jenisTugas} - ${item.kategori}</span>
+                    </td>
+                    <td class="p-3.5 text-xs">
+                        <a href="${item.linkTugas}" target="_blank" class="text-sky-600 hover:underline font-semibold flex items-center space-x-1">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            <span>Buka Link</span>
+                        </a>
+                    </td>
+                    <td class="p-3.5">${badge}</td>
+                    <td class="p-3.5 font-bold text-sky-900 text-xs">${item.nilai !== null ? item.nilai : '-'}</td>
+                    <td class="p-3.5 text-center">
+                        <button onclick="openReviewModal('${item.id}')" class="px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-white rounded-xl text-xs font-bold transition-all shadow-sm">
+                            <i class="fa-solid fa-pen-to-square mr-1"></i> Penilaian
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function openReviewModal(idKarya) {
+            const item = statePortofolio.find(p => p.id === idKarya);
+            if (!item) return;
+
+            document.getElementById('review-id-karya').value = item.id;
+            document.getElementById('review-modal-subtitle').innerText = `${item.namaSiswa} - ${item.judul}`;
+            document.getElementById('review-status').value = item.status === 'Pending' ? 'Disetujui' : item.status;
+            document.getElementById('review-nilai').value = item.nilai || 85;
+            document.getElementById('review-catatan').value = item.catatanGuru || '';
+
+            document.getElementById('modal-review-guru').classList.remove('hidden');
+        }
+
+        function closeReviewModal() {
+            document.getElementById('modal-review-guru').classList.add('hidden');
+        }
+
+        function handleReviewSubmit(e) {
+            e.preventDefault();
+            const id = document.getElementById('review-id-karya').value;
+            const status = document.getElementById('review-status').value;
+            const nilai = parseInt(document.getElementById('review-nilai').value);
+            const catatan = document.getElementById('review-catatan').value;
+
+            const item = statePortofolio.find(p => p.id === id);
+            if (item) {
+                item.status = status;
+                item.nilai = nilai;
+                item.catatanGuru = catatan;
+
+                showToast('Penilaian berhasil disimpan!', 'success');
+                closeReviewModal();
+                renderGuruDashboard();
+                renderGaleri();
+            }
+        }
+
+        function openDetailModal(idKarya) {
+            const item = statePortofolio.find(p => p.id === idKarya);
+            if (!item) return;
+
+            const content = document.getElementById('modal-detail-content');
+            content.innerHTML = `
+                <div class="space-y-4">
+                    <div class="h-56 rounded-2xl overflow-hidden bg-sky-100">
+                        <img src="${item.thumbnail || 'https://placehold.co/600x400/0284c7/ffffff?text=Portofolio+AI'}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex items-center space-x-2 text-xs font-bold text-sky-600">
+                        <span class="px-2.5 py-1 bg-sky-100 rounded-lg">${item.jenisTugas}</span>
+                        <span class="px-2.5 py-1 bg-cyan-100 text-cyan-800 rounded-lg">${item.kategori}</span>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading text-sky-900">${item.judul}</h3>
+                    <p class="text-xs font-bold text-sky-700">Oleh: ${item.namaSiswa} (NISN: ${item.nisn})</p>
+                    <p class="text-sm text-sky-800 leading-relaxed">${item.deskripsi}</p>
+                    
+                    <div class="p-4 bg-sky-50 rounded-2xl border border-sky-100">
+                        <span class="text-xs font-bold text-sky-500 uppercase block mb-1">Tech Stack:</span>
+                        <p class="text-sm font-semibold text-sky-900">${item.techStack}</p>
+                    </div>
+
+                    ${item.catatanGuru ? `
+                        <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-200">
+                            <span class="text-xs font-bold text-emerald-700 uppercase block mb-1">Feedback Guru (Skor: ${item.nilai}):</span>
+                            <p class="text-sm text-emerald-900 italic">"${item.catatanGuru}"</p>
+                        </div>
+                    ` : ''}
+
+                    <div class="pt-4 border-t border-sky-100 flex justify-end">
+                        <a href="${item.linkTugas}" target="_blank" class="ocean-btn-primary px-5 py-2.5 rounded-xl font-bold text-sm flex items-center space-x-2">
+                            <span>Buka Repository / Document</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+            document.getElementById('modal-detail-karya').classList.remove('hidden');
+        }
+
+        function closeDetailModal() {
+            document.getElementById('modal-detail-karya').classList.add('hidden');
+        }
+
+        function showToast(msg, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            let bg = 'bg-sky-600 text-white';
+            if (type === 'success') bg = 'bg-emerald-600 text-white';
+            if (type === 'error') bg = 'bg-rose-600 text-white';
+
+            toast.className = `${bg} px-4 py-3 rounded-2xl shadow-lg text-xs font-bold flex items-center space-x-2 transition-all duration-300 transform translate-y-2 pointer-events-auto`;
+            toast.innerHTML = `
+                <i class="fa-solid ${type === 'success' ? 'fa-circle-check' : type === 'error' ? 'fa-circle-xmark' : 'fa-circle-info'}"></i>
+                <span>${msg}</span>
+            `;
+
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-[-10px]');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
